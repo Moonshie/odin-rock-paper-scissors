@@ -12,6 +12,7 @@ function getComputerChoice() {
 let computerSelection;
 let playerWinCount = 0;
 let computerWinCount = 0;
+let mistakeSwitch = false;
 
 function playRound() {
     let playerInput = prompt();
@@ -28,9 +29,19 @@ function playRound() {
     else if (playerSelection === "Paper" && computerSelection === "Scissors") {computerWinCount++; return `You Lose! Scissors beat Paper.`}
     else if (playerSelection === "Scissors" && computerSelection === "Rock") {computerWinCount++; return `You Lose! Rocks beats Scissors.`}
     else if (playerSelection === "Scissors" && computerSelection === "Paper") {playerWinCount++; return `You Win! Scissors beat Paper.`}
-    else return "Incorrect input!";
+    else {mistakeSwitch = true; return "Incorrect input!"};
 }
 
-console.log(playRound());
-console.log(`Player won ` + playerWinCount + ` times.`);
-console.log(`Player won ` + computerWinCount + ` times.`);
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        console.log(playRound())
+        if (mistakeSwitch === true) return `Disqualified! Reload the page and try again.`
+        console.log(`Player won ` + playerWinCount + ` times.`)
+        console.log(`Computer won ` + computerWinCount + ` times.`)
+    }
+    if (playerWinCount > computerWinCount) return `Player is victorious! Final score: ${playerWinCount}:${computerWinCount}.`
+    else if (playerWinCount < computerWinCount) return `Computer is victorious! Final score: ${playerWinCount}:${computerWinCount}.`
+    else return `The game ends in a draw! Final score: ${playerWinCount}:${computerWinCount}.`;
+}
+
+console.log(playGame());
