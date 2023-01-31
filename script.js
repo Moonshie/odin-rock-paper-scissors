@@ -14,9 +14,19 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 let mistakeSwitch = false;
 
-document.querySelector("#rock").addEventListener("click", function () {playRound("Rock")});
-document.querySelector("#paper").addEventListener("click", function () {playRound("Paper")});
-document.querySelector("#scissors").addEventListener("click", function () {playRound("Scissors")});
+document.querySelector("#rock").addEventListener("click", playRoundRock);
+document.querySelector("#paper").addEventListener("click", playRoundPaper);
+document.querySelector("#scissors").addEventListener("click", playRoundScissors);
+
+function playRoundRock() {
+    playRound("Rock");
+}
+function playRoundPaper() {
+    playRound("Paper");
+}
+function playRoundScissors() {
+    playRound("Scissors");
+}
 
 function displayChoice() {
     document.querySelector(".player").innerHTML = playerSelection;
@@ -45,6 +55,17 @@ function playRound(choice) {
     else if (playerSelection === "Scissors" && computerSelection === "Rock") {computerWinCount++; showResult(`You Lose!`)}
     else if (playerSelection === "Scissors" && computerSelection === "Paper") {playerWinCount++; showResult(`You Win!`)}
     displayScore();
-    if (playerWinCount === 5) showResult(`Player is victorious!`);
-    if (computerWinCount === 5) showResult(`Game over! You lost!`);
+    if (playerWinCount === 5) {
+        showResult(`Player is victorious!`);
+        document.querySelector("#rock").removeEventListener("click", playRoundRock);
+        document.querySelector("#paper").removeEventListener("click", playRoundPaper);
+        document.querySelector("#scissors").removeEventListener("click", playRoundScissors);
+    }
+    else if (computerWinCount === 5) {
+        showResult(`Game over! You lost!`);
+        document.querySelector("#rock").removeEventListener("click", playRoundRock);
+        document.querySelector("#paper").removeEventListener("click", playRoundPaper);
+        document.querySelector("#scissors").removeEventListener("click", playRoundScissors);
+
+    }
 }
