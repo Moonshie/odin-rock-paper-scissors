@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src"./script.js"> defer</script>
+    <script src="./script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="main-container">
         <div class="button-container">
-            <button class="rps-button">Rock</button>
-            <button class="rps-button">Paper</button>
-            <button class="rps-button">Scissors</button>
+            <button class="rps-button" id="rock">Rock</button>
+            <button class="rps-button" id="paper">Paper</button>
+            <button class="rps-button" id="scissors">Scissors</button>
         </div>
         <div class="text-container">
             <div class="text">You chose</div>
@@ -23,7 +23,10 @@
             <div class="text-choice player">Scissors</div>
             <div class="text-choice computer">Scissors</div>
         </div>
-        <div class="text-container" style="margin-top:72px;">
+        <div class="text-container" style="margin-top:24px;">
+            <div class="text result">-</div>
+        </div>
+        <div class="text-container" style="margin-top:48px;">
             <div class="text">Current score</div>
         </div>
         <div class="text-container">
