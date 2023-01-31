@@ -1,0 +1,30 @@
+.main-container {
+    border: 2px solid black;
+    padding: 24px;
+    margin-top: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+    min-width: 400px
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+.rps-button {
+    width: 72px;
+}
+
+.text-container {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-around;
+}
+.text, .text-choice{
+    width: 200px;
+    text-align: center;
+}
+.text-choice {
+    font-size: large;
+    font-weight: bold;
+}
