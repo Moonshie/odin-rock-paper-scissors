@@ -43,9 +43,7 @@ function showResult(result) {
 
 function playRound(choice) {
     playerSelection = choice;
-    console.log("Player chose " + playerSelection + ".");
     computerSelection = getComputerChoice();
-    console.log("Computer chose " + computerSelection + ".");
     displayChoice();
     if (playerSelection === computerSelection) showResult(`It's a draw!`);
     else if (playerSelection === "Rock" && computerSelection === "Paper") {computerWinCount++; showResult(`You Lose!`)}
