@@ -14,34 +14,37 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 let mistakeSwitch = false;
 
-function playRound() {
-    let playerInput = prompt();
-    playerInput = playerInput.toLowerCase();
-    let firstLetter = playerInput.charAt(0);
-    let playerSelection = firstLetter.toUpperCase() + playerInput.substring(1);
+document.querySelector("#rock").addEventListener("click", function () {playRound("Rock")});
+document.querySelector("#paper").addEventListener("click", function () {playRound("Paper")});
+document.querySelector("#scissors").addEventListener("click", function () {playRound("Scissors")});
+
+function displayChoice() {
+    document.querySelector(".player").innerHTML = playerSelection;
+    document.querySelector(".computer").innerHTML = computerSelection;
+}
+
+function displayScore() {
+    document.querySelector(".score").innerHTML = `${playerWinCount} : ${computerWinCount}`
+}
+
+function showResult(result) {
+    document.querySelector(".result").innerHTML = result
+}
+
+function playRound(choice) {
+    playerSelection = choice;
     console.log("Player chose " + playerSelection + ".");
     computerSelection = getComputerChoice();
     console.log("Computer chose " + computerSelection + ".");
-    if (playerSelection === computerSelection) return `It's a draw! You both chose ${computerSelection}.`
-    else if (playerSelection === "Rock" && computerSelection === "Paper") {computerWinCount++; return `You Lose! Paper beats Rock.`}
-    else if (playerSelection === "Rock" && computerSelection === "Scissors") {playerWinCount++; return `You Win! Rock beats Scissors.`}
-    else if (playerSelection === "Paper" && computerSelection === "Rock") {playerWinCount++; return `You Win! Paper beats Rock.`}
-    else if (playerSelection === "Paper" && computerSelection === "Scissors") {computerWinCount++; return `You Lose! Scissors beat Paper.`}
-    else if (playerSelection === "Scissors" && computerSelection === "Rock") {computerWinCount++; return `You Lose! Rocks beats Scissors.`}
-    else if (playerSelection === "Scissors" && computerSelection === "Paper") {playerWinCount++; return `You Win! Scissors beat Paper.`}
-    else {mistakeSwitch = true; return "Incorrect input!"};
+    displayChoice();
+    if (playerSelection === computerSelection) showResult(`It's a draw!`);
+    else if (playerSelection === "Rock" && computerSelection === "Paper") {computerWinCount++; showResult(`You Lose!`)}
+    else if (playerSelection === "Rock" && computerSelection === "Scissors") {playerWinCount++; showResult(`You Win!`)}
+    else if (playerSelection === "Paper" && computerSelection === "Rock") {playerWinCount++; showResult(`You Win!`)}
+    else if (playerSelection === "Paper" && computerSelection === "Scissors") {computerWinCount++; showResult(`You Lose!`)}
+    else if (playerSelection === "Scissors" && computerSelection === "Rock") {computerWinCount++; showResult(`You Lose!`)}
+    else if (playerSelection === "Scissors" && computerSelection === "Paper") {playerWinCount++; showResult(`You Win!`)}
+    displayScore();
+    if (playerWinCount === 5) showResult(`Player is victorious!`);
+    if (computerWinCount === 5) showResult(`Game over! You lost!`);
 }
-
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        console.log(playRound())
-        if (mistakeSwitch === true) return `Disqualified! Reload the page and try again.`
-        console.log(`Player won ` + playerWinCount + ` times.`)
-        console.log(`Computer won ` + computerWinCount + ` times.`)
-    }
-    if (playerWinCount > computerWinCount) return `Player is victorious! Final score: ${playerWinCount}:${computerWinCount}.`
-    else if (playerWinCount < computerWinCount) return `Computer is victorious! Final score: ${playerWinCount}:${computerWinCount}.`
-    else return `The game ends in a draw! Final score: ${playerWinCount}:${computerWinCount}.`;
-}
-
-console.log(playGame());
